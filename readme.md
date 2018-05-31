@@ -1,47 +1,59 @@
-## Chasing Unicorns and Vampires in a Library
-
-Die Staatsbibliothek zu Berlin ist die größte wissenschaftliche
-Bibliothek des deutschsprachigen Raums. In ihrer mehr als 350 Jahre
-alten Geschichten haben sich weit mehr 13 Millionen verschiedene Medien
-angesammelt und es werden immer mehr...
-
-Ein großer Teil unser alten Bestände, d.h. 15.818.274 Einzelseiten, sind
-bereits digitalisiert und werden weltweit unter
-http://digital.staatsbibliothek-berlin.de/ angeboten. Teilweise sind
-unser Bücher, die häufig nur noch einmal auf der Welt existieren,
-bereits durch die OCR gelaufen, so dass wir mehr oder weniger wissen,
-was in ihnen steht. Als positive Nebenwirkung haben wir dabei ebenfalls
-herausgefunden, wo sich Abbildungen befinden, jedoch nicht, was
-eigentlich abgebildet ist.
-
-Ziel des Projekts ist es, mittels geeigneter Mittel das kulturelle
-Welterbe visuell zu erkunden und Leserinnen und Lesern die Möglichkeit
-zu bieten, einen ganz neuen Blick auf unsere internationale Sammlung zu
-werfen. Hierbei steht nicht mehr der Text sondern das Bild im
-Mittelpunkt, so dass sich die Exploration verschiedener Visualisierungs-
-und Interaktionsmethoden anbietet.
-
-**Unter anderem könnte dabei untersucht werden:**
-
-* welche typischen Motive sich in den Büchern, Schriftrollen,
-    Karten etc. der letzten 1.000 Jahre finden lassen,
-* wie diese zusammenhängen, ob sich diese ähneln
-* und ob sich diese Bilder Kategoriebegriffen, wie Einhorn oder
-    Vampir, zuordnen lassen.
-
-Thematisch streifen sie hier Felder wie die inhaltsbasierte Bildsuche,
-maschinelles Lernen (z.B. CNN), Clusteringalgorithmen und last not least
-Visualisierungstechniken für eine riesige Anzahl an Objekte, die sich
-über den Erwerbungszeitstrahl der Staatsbibliothek zu Berlin erstrecken.
+# CNN model for filtering out unwanted Stabi images
+Created specifically to group Stabi images together that have meaningful content. This way less data is needed to be saved in the databank and clustering may be performed only on images with actual content.
 
 ---
-## Links
-**Beipiele:**
-[example01](http://ngcs.staatsbibliothek-berlin.de/?action=metsImage&format=jpg&metsFile=PPN751257885&divID=PHYS_0231&width=1200)
-[example02](http://ngcs.staatsbibliothek-berlin.de/?action=metsImage&format=jpg&metsFile=PPN626696453&divID=PHYS_0020&width=1200)
-[example03](http://ngcs.staatsbibliothek-berlin.de/?action=metsImage&format=jpg&metsFile=PPN3308095777&divID=PHYS_0002&width=1200)
-[example04](http://ngcs.staatsbibliothek-berlin.de/?action=metsImage&format=jpg&metsFile=PPN632170891&divID=PHYS_0293&width=1200)
-[example05](http://ngcs.staatsbibliothek-berlin.de/?action=metsImage&format=jpg&metsFile=PPN644058722&divID=PHYS_0053&width=1200)
+## Dependencies:
+Dependencies used for this are listed in the **requirements.txt** file. Download them easily to your current Python environment by navigating to the project root and entering the following:
+* `pip install -r requirements.txt`
+
+---
+## Preparing data:
+The script has been configured to locate the images by path, here being the **data** directory. Simply place all subdirectories within this directory. The subdirectories should then contain the images to be filtered. An example directory structure is as follows:
+
+* data
+    * PPN61019657X
+        * 0001_Page1_Block2.tif
+        * 0001_Page1_Block12.tif
+        * 0132_Page1_Block9.tif
+        * ...
+    * PPN610195530
+        * ...
+    * PPN610195867
+        * ...
+    * PPN610196898
+        * ...
+    * ...
+
+---
+## Running the script:
+The only script you have to run is the **'classify-all'** script. The arguments to be passed are as follows:
+
+* model: path to trained model model.
+* labelbin: path to label binarizer.
+* images: path to input images.
+
+The current version should run with the following command if images are properly placed in the **'data'** directory as suggested above:
+
+`python classify-all.py --model filter_v2.model --labelbin label_v2.pickle --images data`
+
+Once the script is done, an **'output'** directory will be created with subdirectories according to the number of classes the model was trained with.
+
+Current subdirectories are:
+* **blanks** (blank pages)
+* **color_palette** (an image of a color palette)
+* **content** (the images the we want)
+* **logo** (the Stabi logo)
+* **red_stamp** (red Stabi stamp mark)
+
+### Note:
+A single image may also be classifed for debugging purposes by running the **'classify-single'** script. Arguments for this are as follows:
+
+`python classify-single.py --model filter_v2.model --labelbin label_v2.pickle --image data/0492_Page1_Block1.tif`
+
+Make sure the last argument **'--image'** is pointing towards a single image file.
 
 
-## Mehr in der Wiki!
+---
+## Output:
+Make sure there is no directory named **'output'** in the root location. An 'output' file will be created upon a successful run of the **'classify-all'** script. Images will be grouped by their predicted class followed by their directory name (usually the PPN name). The file names themselves remain the same as well as their file type, here TIFFs.
+
