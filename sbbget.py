@@ -161,22 +161,6 @@ def download_images():
             print("Deleted tempfolder")
     print("Done.")
 
-# parser = argparse.ArgumentParser(description='Process some integers.')
-# parser.add_argument('integers', metavar='N', type=int, nargs='+',
-#                     help='an integer for the accumulator')
-# parser.add_argument('--sum', dest='accumulate', action='store_const',
-#                     const=sum, default=max,
-#                     help='sum the integers (default: find the max)')
-#
-# args = parser.parse_args()
-# print(args.accumulate(args.integers))
-
-# Schalter
-# Prefix für Ordner, in dem die Dateien landen -> downloadPathPrefix
-# Schalter: Download Bilder in ALTO -> extractIllustrations
-# skipXML-Schalter
-#
-
 metaDataDownloadURLPrefix="http://digital.staatsbibliothek-berlin.de/metsresolver/?PPN="
 downloadPathPrefix="."
 addPPNPrefix=True
@@ -210,13 +194,6 @@ for i in range(start,end):
     current_time = strftime("%Y-%m-%d_%H-%M-%S", gmtime())
     with open(log_file_name, 'a') as log_file:
         log_file.write(current_time + " " + ppn + " (Number: %d)" % (i) + "\n")
-
-    # Chinese book with fulltext
-    # ppn="3343669865"
-    # book with fulltext
-    #ppn="792383192"
-    # book with printer's mark without fulltext
-    #ppn="715665294"
 
     if addPPNPrefix:
         ppn="PPN"+ppn

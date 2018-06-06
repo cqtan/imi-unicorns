@@ -39,60 +39,78 @@ output_path2 = 'output2'
 # config = tf.GPUOptions(per_process_gpu_memory_fraction=0.870)
 # sess = tf.Session(config=tf.ConfigProto(gpu_options=config))
 
-# Configure logging
+# Configure general logging
 current_time = strftime("%Y-%m-%d_%H-%M-%S", gmtime())
-logging.basicConfig(filename='LOG_' + current_time + '.log',level=logging.DEBUG)
+log_name = 'LOG_' + current_time + '.log'
+logging.basicConfig(filename=log_name,level=logging.DEBUG)
 
 def filter_data(data_path, output_path, model, lb):
+	# Log ppns as checkpoints
+	logged_ppns = []
+	counter = 0
+	checkpoint_name = output_path + '_log' + '.txt' 
+	if os.path.isfile(checkpoint_name):
+		with open(checkpoint_name, 'r') as log_file:
+			tmp = []
+			tmp = log_file.readlines()
+			for ppn in tmp:
+				ppn = ppn[:-1] # Remove escape character
+				logged_ppns.append(ppn)
+			counter = len(logged_ppns)
+			logging.info(str(datetime.now()) + ' ' + "Starting from checkpoint at: " + str(len(logged_ppns)))
+	else:
+		with open(checkpoint_name, 'w') as log_file:
+			pass
+
 	# loop over all images in each subdirectory
 	print("[INFO] classifying images...")
 	imagePaths = sorted(list(paths.list_images(data_path)))
 	total_images = len(imagePaths)
-	counter = 0
 	logging.info("Logging latest PPN classified...")
 	last_ppn = ''
 	for imagePath in imagePaths:
-		counter += 1
-		print("Filtering image {:d} / {:d}".format(counter, total_images))
-		# load and save a copy of the image
-		image = Image.open(imagePath)
-		output = image.copy()
-
-		# Store image info
-		filename = imagePath.split(os.path.sep)[-1]
-		filename = filename[:-3]
 		ppn = imagePath.split(os.path.sep)[-2]
-		if last_ppn != ppn:
-			last_ppn = ppn
-			logging.info(str(datetime.now()) + ' ' + ppn)
 
-		# pre-process the image for classification
-		image = image.resize((96, 96))
-		image = np.array(image)
-		image = np.divide(image, 255.0)
-		image = np.expand_dims(image, axis=0)
+		if ppn not in logged_ppns:
+			counter += 1
+			print("Filtering image {:d} / {:d}".format(counter, total_images))
+			# load and save a copy of the image
+			image = Image.open(imagePath)
+			output = image.copy()
 
-		# classify the input image
-		proba = model.predict(image)[0]
-		idx = np.argmax(proba)
-		label = lb.classes_[idx]
-		highest_pred = proba[np.argsort(proba)[-1:]]
-		if label == 'content' and highest_pred < 0.85:
-			label = 'outlier'
-			print('[INFO] Check outlier directory: ', ppn + ', ' + filename)
-			logging.info('Check outlier directory: ' + ppn + ', ' + filename)
+			# Store image info
+			filename = imagePath.split(os.path.sep)[-1]
+			filename = filename[:-3]
 
-		# within the predicted subdirectory of the class create
-		# another subdirectory according to the PPN of the image.
-		out_path = output_path+'/'+label+'/'+ppn
-		if not os.path.exists(out_path):
-			os.makedirs(out_path)
-		output.save(os.path.join(out_path,filename)+'jpg')
+			# pre-process the image for classification
+			image = image.resize((96, 96))
+			image = np.array(image)
+			image = np.divide(image, 255.0)
+			image = np.expand_dims(image, axis=0)
 
-		# Log latest PPN
-		if last_ppn != ppn:
-			last_ppn = ppn
-			logging.info(datetime.now() + ' ' + ppn)
+			# classify the input image
+			proba = model.predict(image)[0]
+			idx = np.argmax(proba)
+			label = lb.classes_[idx]
+			highest_pred = proba[np.argsort(proba)[-1:]]
+			if label == 'content' and highest_pred < 0.85:
+				label = 'outlier'
+				print('[INFO] Check outlier directory: ', ppn + ', ' + filename)
+				logging.info('Check outlier directory: ' + ppn + ', ' + filename)
+
+			# within the predicted subdirectory of the class create
+			# another subdirectory according to the PPN of the image.
+			out_path = output_path+'/'+label+'/'+ppn
+			if not os.path.exists(out_path):
+				os.makedirs(out_path)
+			output.save(os.path.join(out_path,filename)+'jpg')
+
+			# Log latest PPN
+			if last_ppn != ppn:
+				last_ppn = ppn
+				logging.info(str(datetime.now()) + ' ' + str(ppn))
+				with open(checkpoint_name, 'a') as log_file:
+					log_file.write(str(ppn) + '\n')
 
 # load the trained convolutional neural network and the label binarizer, then filter
 print("[INFO] loading 1st network...")
@@ -125,3 +143,5 @@ if not os.path.exists(output_path2):
 filter_data(data_path2, output_path2, model2, lb2)
 
 print("[INFO] Done!")
+logging.info(str(datetime.now()) + "DONE!!!")
+

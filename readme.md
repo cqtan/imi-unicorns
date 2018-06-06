@@ -3,7 +3,7 @@ Created specifically to group Stabi images together that have meaningful content
 
 ---
 ## Dependencies:
-Dependencies used for this are listed in the **requirements.txt** file. Download them easily to your current Python environment by navigating to the project root and entering the following:
+Dependencies used for this are listed in the **requirements.txt** file. Download them easily to your current Python environment (or switch to virtual one) by navigating to the project root and entering the following:
 * `pip install -r requirements.txt`
 
 ---
@@ -15,6 +15,8 @@ Once all images from the **OCR-PPN-Liste.txt** have been downloaded to **sbb/sav
 * `python classify-all.py`
 
 Output files **output1** and **output2** will be created but only the latter is of concern. Meaningful content should then be in **output2/content**. Double check other directories for outliers though!
+
+If any of the scripts are interrupted, simply rerun the interrupted script. It should pick up where it left off or when in doubt, check the last section about **Output and Logging**.
 
 ---
 ## Preparing data:
@@ -79,7 +81,9 @@ The **output1** and **output2** directories will be created (if not already). Im
 
 Log files will also be created to keep track of the progress of both scripts. Make sure to check them if errors occur or when scripts are interrupted.
 
-The first script will continue where it left off if unterrupted if the respective **ppn_log.txt** has been created.
+The first script will continue where it left off if unterrupted and if the respective **ppn_log.txt** has been created on the first run.
 
-The second script requires manual intervention when interrupted to pick off where it stopped since the order of PPN can be mixed. Hence, remove PPN directories listed in the last **LOG_2018_.log** file out of the **sbb/saved_images** directory and rerun the script `python classify-all.py`. 
+The second script also continues where it left off if interrupted by reading both the **output1_log.txt** and **output2_log.txt**. These two will simply list the PPNs that it has already dealt with and check against the newly read. Simply rerun `python classify-all.py` if this happens.
+
+The **LOG_2018_.log** simply lists more information on the filtering progress for each run of the `classify-all.py` script.
 
