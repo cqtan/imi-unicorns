@@ -1,5 +1,5 @@
 # USAGE
-# python train_filter.py --dataset train --model filter_v2.model --labelbin label_v2.pickle --plot plot_v2.png
+# python train_filter.py --dataset train2 --model filter2_v3.model --labelbin label2_v3.pickle --plot plot2_v3.png
 
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
@@ -34,7 +34,7 @@ args = vars(ap.parse_args())
 
 # initialize the number of epochs to train for, initial learning rate,
 # batch size, and image dimensions
-EPOCHS = 1000
+EPOCHS = 1500
 INIT_LR = 1e-3
 BS = 32
 IMAGE_DIMS = (96, 96, 3)
