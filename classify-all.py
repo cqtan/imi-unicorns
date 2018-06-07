@@ -31,6 +31,7 @@ labelbin_path1 = 'label_v10.pickle'
 model_path2 = 'filter2_v3.model'
 labelbin_path2 = 'label2_v3.pickle'
 data_path1 = 'sbb/saved_images'
+#data_path1 = 'test_images' # For testing dependencies
 output_path1 = 'output1'
 data_path2 = 'output1/content'
 output_path2 = 'output2'

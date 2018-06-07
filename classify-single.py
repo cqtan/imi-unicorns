@@ -1,5 +1,5 @@
 # USAGE
-# python classify-single.py --model filter2_v1.model --labelbin label2_v1.pickle --image test/0021_Page1_Block1.jpg
+# python classify-single.py --model filter_v10.model --labelbin label_v10.pickle --image test/0021_Page1_Block1.jpg
 
 # import the necessary packages
 from keras.preprocessing.image import img_to_array

@@ -6,6 +6,13 @@ Created specifically to group Stabi images together that have meaningful content
 Dependencies used for this are listed in the **requirements.txt** file. Download them easily to your current Python environment (or switch to virtual one) by navigating to the project root and entering the following:
 * `pip install -r requirements.txt`
 
+Or when using Anaconda:
+* First, add these to the conda channels to install packages outside from the default channels:
+    * `conda config --append channels conda-forge`
+    * `conda config --append channels gilbertfrancois`
+* Then install the packages listed in the 'package-list.txt' with:
+    * `conda install --file package-list.txt`
+
 ---
 ## tl;dr:
 Run the following to first download SSB images:
