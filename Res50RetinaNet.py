@@ -64,6 +64,9 @@ print("processing time: ", time.time() - start)
 # correct for image scale
 boxes /= scale
 
+
+imdata = {}
+last_label = ""
 # visualize detections
 for box, score, label in zip(boxes[0], scores[0], labels[0]):
     # scores are sorted so we can break
@@ -74,9 +77,20 @@ for box, score, label in zip(boxes[0], scores[0], labels[0]):
     
     b = box.astype(int)
     draw_box(draw, b, color=color)
+
+    label_name = labels_to_names[label]
+
+    if label_name in imdata: 
+        imdata[label_name] += 1
+    else:
+        imdata[label_name] = 1
     
-    caption = "{} {:.3f}".format(labels_to_names[label], score)
+    caption = "{} {:.3f}".format(label_name, score)
     draw_caption(draw, b, caption)
+
+# Print imdata
+for key, val in imdata.items():
+    print(key + ": " + str(val))
     
 plt.figure(figsize=(15, 15))
 plt.axis('off')
