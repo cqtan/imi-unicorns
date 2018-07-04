@@ -3,12 +3,10 @@ venv-pokedex
 logs
 train-data
 val-data
-data
 for-testing
 *.log
 .vscode
 tmp*
-data*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
