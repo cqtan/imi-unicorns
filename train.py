@@ -20,10 +20,12 @@ import pickle
 import os
 
 # Manual Settings
-model_filepath = 'model-ssb1.h5'
-lb_pickle_name = "lb-ssb1.pickle"
-tmp_data_dir = "tmp_data_ssb1"
-tmp_val_dir = "tmp_val_ssb1"
+file_postfix = "sbb1"
+
+model_filepath = "model-" + file_postfix + ".h5"
+lb_pickle_name = "lb-" + file_postfix + ".pickle"
+tmp_data_dir = "tmp_data_" + file_postfix
+tmp_val_dir = "tmp_val_" + file_postfix
 epoch_amount = 50
 
 # Use this: python train.py -d data
@@ -63,7 +65,7 @@ args = vars(ap.parse_args())
 # initialize the data and labels
 data, labels, data_test, labels_test, tmp_data, tmp_labels = ([] for i in range(6))
 
-# grab the image paths and randomly shuffle them
+# grab the image paths and prepare them for splitting
 print("[INFO] loading images...")
 logging.info("[INFO] loading images...")
 image_paths = sorted(list(paths.list_images(args["dataset"])))
@@ -77,6 +79,7 @@ for image_path in image_paths:
     label = image_path.split(os.path.sep)[-2]
     counter += 1
     
+    # Once done with a subfolder, split content by designated amount
     if counter == numFiles:
         (trainX, testX, trainY, testY) = train_test_split(tmp_data, tmp_labels, test_size=0.2)
         labels.extend(trainY)
