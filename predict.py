@@ -1,5 +1,5 @@
 from cnn import VGG16
-from helpers import ImageWriter
+from helpers import ImageWriter, JsonBuilder
 from keras.preprocessing import image
 from keras.layers import GlobalAveragePooling2D, Dense, Dropout
 from keras.models import Model
@@ -12,6 +12,9 @@ import argparse
 import logging
 import pickle
 import os
+
+# Usage:
+# python predict.py -m model-sbb1.h5 -l lb-sbb1.pickle -d data
 
 output_path = "out"
 
@@ -49,13 +52,13 @@ image_paths = sorted(list(paths.list_images(args["dataset"])))
 file_count = sum(len(files) for _, _, files in os.walk(args["dataset"]))
 logging.info("Total number of files: " + str(file_count))
 
-ImageWriter.CreateScaffold(output_path, lb.classes_)
-
+# ImageWriter.CreateScaffold(output_path, lb.classes_)
+json_builder = JsonBuilder.JsonBuilder(lb.classes_, 0.90)
 
 inputShape = (224,224) # Assumes 3 channel image
 for image_path in image_paths:
-    label = image_path.split(os.path.sep)[-2]
     image = load_img(image_path, target_size=inputShape)
+    copy = image.copy()
     image = img_to_array(image)   # shape is (224,224,3)
     image = np.expand_dims(image, axis=0)  # Now shape is (1,224,224,3)
     image = image/255.0
@@ -65,6 +68,13 @@ for image_path in image_paths:
 
     idx = np.argmax(predictions)
     label = lb.classes_[idx]
-    print(label)
+    highest_pred = predictions.max()
 
-    ImageWriter.WriteImage(output_path, label)
+    print(label + ": " + str(highest_pred))
+
+    # ImageWriter.WriteImage(copy, output_path, image_path, label, highest_pred)
+    json_builder.AppendImageData(image_path, predictions)
+
+json_builder.CreateJson()
+
+
