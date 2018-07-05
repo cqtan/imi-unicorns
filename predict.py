@@ -1,4 +1,5 @@
 from cnn import VGG16
+from helpers import ImageWriter
 from keras.preprocessing import image
 from keras.layers import GlobalAveragePooling2D, Dense, Dropout
 from keras.models import Model
@@ -11,6 +12,8 @@ import argparse
 import logging
 import pickle
 import os
+
+output_path = "out"
 
 # Configure general logging
 current_time = strftime("%Y-%m-%d_%H-%M-%S", gmtime())
@@ -46,6 +49,9 @@ image_paths = sorted(list(paths.list_images(args["dataset"])))
 file_count = sum(len(files) for _, _, files in os.walk(args["dataset"]))
 logging.info("Total number of files: " + str(file_count))
 
+ImageWriter.CreateScaffold(output_path, lb.classes_)
+
+
 inputShape = (224,224) # Assumes 3 channel image
 for image_path in image_paths:
     label = image_path.split(os.path.sep)[-2]
@@ -60,3 +66,5 @@ for image_path in image_paths:
     idx = np.argmax(predictions)
     label = lb.classes_[idx]
     print(label)
+
+    ImageWriter.WriteImage(output_path, label)
