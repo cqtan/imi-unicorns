@@ -4,7 +4,7 @@ Uses the pretrained VGGnet to classify certain classes and either outputs a json
 
 ----
 ## Train
-Training is now simplified to the point that only training data are grouped together in a folder, which is named after their class. All of these folders should then be located within a parent folder, such as 'data'. A possible folder structre is as follows:
+Training is now simplified to the point that only training data is needed that are grouped together in a folder. The folders should also be named after their class. All of these folders should then be located within a parent folder, such as 'data'. A possible folder structure is as follows:
 
 data
 * botany
@@ -39,7 +39,14 @@ Once the model and label-binarizer have been created, then predictions can be ma
 Output files are (currently):
 * categories.json
 * categories_alt.json
+* another log file
 
 Difference between the two is that the categories_alt.json includes the accuracy of the predicted label. Reason for this, is to be able to sort images by their predicted accuracy, making images with high accuracy be shown first.
 * Accuracies are Integers ranging from 75-100
+
+---
+### Note
+An 'ImageWriter' helper script has also been created to visualize output of images. With this, predicted images are written to a subfolder within the parent folder 'out' according to their predicted class.
+
+Simple include the commented lines with `ImageWriter...` in the predict.py script.
 
