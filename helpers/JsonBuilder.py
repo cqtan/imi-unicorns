@@ -4,7 +4,9 @@ import os
 
 
 class JsonBuilder:
+
     def __init__(self, labels, threshold):
+        self.output_filename = "categories.json"
         self.labels = labels
         self.threshold = threshold
         self.master_dict = {
@@ -12,10 +14,17 @@ class JsonBuilder:
             "book_data": {},
             "image_data": []
         }
+        self.alt_dict = {
+            "category_data": {},
+            "book_data": {},
+            "image_data": []
+        }
 
     def CreateJson(self):
-        with open('categories.json', 'w') as json_file:
+        self.AppendCategoryData()
+        with open(self.output_filename, 'w') as json_file:
             json.dump(self.master_dict, json_file, indent=4)
+        print("Created " + self.output_filename)
 
     def AppendImageData(self, image_path, predictions):
         features = self.GetFeatures(predictions)
@@ -41,7 +50,9 @@ class JsonBuilder:
         
 
     def AppendCategoryData(self):
-        pass
+        for label in self.labels:
+            title = label.title()
+            self.master_dict['category_data'][title] = label
 
     def GetFeatures(self, predictions):
         features = []

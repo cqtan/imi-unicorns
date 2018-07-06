@@ -55,6 +55,7 @@ logging.info("Total number of files: " + str(file_count))
 # ImageWriter.CreateScaffold(output_path, lb.classes_)
 json_builder = JsonBuilder.JsonBuilder(lb.classes_, 0.90)
 
+img_counter = 0
 inputShape = (224,224) # Assumes 3 channel image
 for image_path in image_paths:
     image = load_img(image_path, target_size=inputShape)
@@ -64,17 +65,20 @@ for image_path in image_paths:
     image = image/255.0
 
     predictions = model.predict(image)
-    print(predictions)
+    #print(predictions)
 
     idx = np.argmax(predictions)
     label = lb.classes_[idx]
     highest_pred = predictions.max()
 
-    print(label + ": " + str(highest_pred))
+    #print(label + ": " + str(highest_pred))
 
     # ImageWriter.WriteImage(copy, output_path, image_path, label, highest_pred)
     json_builder.AppendImageData(image_path, predictions)
+    img_counter += 1
+    print(str(img_counter) + " / " + str(file_count) + " done...")
 
 json_builder.CreateJson()
+print("Done!")
 
 

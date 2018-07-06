@@ -1,5 +1,11 @@
 {
-    "category_data": [],
+    "category_data": {
+        "Botany": "botany",
+        "Crest": "crest",
+        "Handwriting": "handwriting",
+        "Map": "map",
+        "Portait": "portait"
+    },
     "book_data": {
         "PPN61012823X": [
             "map",
