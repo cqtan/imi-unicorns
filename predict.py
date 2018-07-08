@@ -84,10 +84,6 @@ for image_path in image_paths:
 json_builder.CreateJson()
 
 run_duration = (time() - start_time) / 60
-
-print("Processing time: " + str(run_duration) + " minutes.")
-logging.info("Done training! Duration: " + str(run_duration) + " minutes.")
-
-print("Done!")
-
-
+end_msg = "Done! Run Duration:  " + str(run_duration) + " minutes."
+print(end_msg)
+logging.info(end_msg)

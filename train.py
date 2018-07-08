@@ -20,8 +20,8 @@ import logging
 import pickle
 import os
 
-# Manual Settings
-file_postfix = "sbb1"
+# Manual Settings (For every new version, increment the postfix!)
+file_postfix = "sbb2"
 
 model_filepath = "model-" + file_postfix + ".h5"
 lb_pickle_name = "lb-" + file_postfix + ".pickle"
@@ -44,8 +44,9 @@ epoch_amount = 50
 
 # Configure general logging
 current_time = strftime("%Y-%m-%d_%H-%M-%S", gmtime())
-log_name = 'LOG_' + current_time + '.log'
+log_name = 'T-LOG_' + current_time + '.log'
 logging.basicConfig(filename=log_name,level=logging.DEBUG)
+logging.info("TRAINING SCRIPT")
 
 ##### Step-1:
 ############ Specify path to training and testing data. Minimum 100 images per class recommended.
@@ -231,10 +232,7 @@ history = model.fit_generator(
 plotter = Plotter.TrainPlotter(history, epoch_amount, file_postfix)
 plotter.PlotLossAndAcc()
 
-run_duration = time() - start_time
-print("Processing time: ", run_duration)
-
-logging.info("Done training! Duration: " + str(run_duration))
-
-
-
+run_duration = (time() - start_time) / 60
+end_msg = "Done! Run Duration:  " + str(run_duration) + " minutes."
+print(end_msg)
+logging.info(end_msg)
