@@ -6,8 +6,8 @@ import math
 class JsonBuilder:
 
     def __init__(self, labels, threshold):
-        self.output_filename = "categories.json"
-        self.output_filename_alt = "categories_alt.json"
+        self.output_filename = "categories-test.json"
+        self.output_filename_alt = "categories_alt-test.json"
         self.labels = labels
         self.threshold = threshold
         self.master_dict = {

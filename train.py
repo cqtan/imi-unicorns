@@ -12,6 +12,7 @@ from imutils import paths
 from PIL import Image
 from cnn import VGG16
 from time import time
+from helpers import Plotter 
 import numpy as np
 import argparse
 import pathlib
@@ -201,7 +202,7 @@ predictions = Dense(num_classes, activation='softmax')(x)
 
 ##### Step-5:
 ############ Specify the complete model input and output, optimizer and loss
-
+start_time = time()
 tensorboard = TensorBoard(log_dir="logs/{}".format(time()))
 
 checkpoint = ModelCheckpoint(model_filepath, monitor='val_loss', verbose=1,save_best_only=True,save_weights_only=False, mode='min',period=1)
@@ -218,7 +219,7 @@ num_training_img=len(data)
 num_validation_img=len(data_test)
 stepsPerEpoch = num_training_img/batch_size
 validationSteps= num_validation_img/batch_size
-model.fit_generator(
+history = model.fit_generator(
         train_generator,
         steps_per_epoch=stepsPerEpoch,
         epochs=epoch_amount,
@@ -227,7 +228,13 @@ model.fit_generator(
         validation_steps=validationSteps
         )
 
-logging.info("Done training!")
+plotter = Plotter.TrainPlotter(history, epoch_amount, file_postfix)
+plotter.PlotLossAndAcc()
+
+run_duration = time() - start_time
+print("Processing time: ", run_duration)
+
+logging.info("Done training! Duration: " + str(run_duration))
 
 
 

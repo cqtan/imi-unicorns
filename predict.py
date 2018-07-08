@@ -7,6 +7,7 @@ from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
 from time import gmtime, strftime
 from imutils import paths
+from time import time
 import numpy as np
 import argparse
 import logging
@@ -53,6 +54,8 @@ file_count = sum(len(files) for _, _, files in os.walk(args["dataset"]))
 logging.info("Total number of files: " + str(file_count))
 
 # ImageWriter.CreateScaffold(output_path, lb.classes_)
+start_time = time()
+
 json_builder = JsonBuilder.JsonBuilder(lb.classes_, 0.90)
 
 img_counter = 0
@@ -79,6 +82,12 @@ for image_path in image_paths:
     print(str(img_counter) + " / " + str(file_count) + " done...")
 
 json_builder.CreateJson()
+
+run_duration = (time() - start_time) / 60
+
+print("Processing time: " + str(run_duration) + " minutes.")
+logging.info("Done training! Duration: " + str(run_duration) + " minutes.")
+
 print("Done!")
 
 
