@@ -35,6 +35,7 @@ args = vars(ap.parse_args())
 lb = pickle.loads(open(args["labelbin"], "rb").read())
 num_classes = len(lb.classes_)
 logging.info("Number of classes: " + str(num_classes))
+my_classes = lb.classes_
 for cl in lb.classes_:
         logging.info("Classes: " + cl)
 

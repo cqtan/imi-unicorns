@@ -6,8 +6,8 @@ import math
 class JsonBuilder:
 
     def __init__(self, labels, threshold):
-        self.output_filename = "categories-test.json"
-        self.output_filename_alt = "categories_alt-test.json"
+        self.output_filename = "categories-18.json"
+        self.output_filename_alt = "categories_alt-18.json"
         self.labels = labels
         self.threshold = threshold
         self.master_dict = {
@@ -20,6 +20,7 @@ class JsonBuilder:
             "book_data": {},
             "image_data": []
         }
+        self.InitializeCategoryData()
 
     def CreateJson(self):
         self.AppendCategoryData()
@@ -39,6 +40,7 @@ class JsonBuilder:
         ppn = image_path.split(os.path.sep)[-2]
 
         self.AppendBookData(ppn, features)
+        self.UpdateCategoryData(ppn, features)
 
         image_dict = {}
         image_dict['features'] = features
@@ -53,6 +55,30 @@ class JsonBuilder:
         self.master_dict['image_data'].append(image_dict)
         self.alt_dict['image_data'].append(image_dict_acc)
 
+    def AppendImageDataDecoded(self, image_path, label, acc):
+        if acc > self.threshold:
+            highest_pred = math.floor(acc * 100)
+            features = [label]
+            features_with_acc = {label: highest_pred}
+            path = self.BuildCustomPath(image_path)
+            ppn = image_path.split(os.path.sep)[-2]
+
+            self.AppendBookData(ppn, features)
+            self.UpdateCategoryData(ppn, features)
+
+            image_dict = {}
+            image_dict['features'] = features
+            image_dict['path'] = path
+            image_dict['ppn'] = ppn
+
+            image_dict_acc = {}
+            image_dict_acc['features'] = features_with_acc
+            image_dict_acc['path'] = path
+            image_dict_acc['ppn'] = ppn
+
+            self.master_dict['image_data'].append(image_dict)
+            self.alt_dict['image_data'].append(image_dict_acc)
+
     def AppendBookData(self, ppn, features):
         if ppn not in self.master_dict["book_data"]:
             self.master_dict["book_data"][ppn] = []
@@ -66,13 +92,29 @@ class JsonBuilder:
 
         for feature in features:
             if feature not in self.alt_dict["book_data"][ppn]:
-                self.alt_dict["book_data"][ppn].append(feature)
+                self.alt_dict["book_data"][ppn].append({feature: 1})
+            else:
+                self.alt_dict["book_data"][ppn][feature] += 1  
         
     def AppendCategoryData(self):
         for label in self.labels:
-            title = label.title()
+            title = self.ConvertToTitle(label)
             self.master_dict['category_data'][title] = label
-            self.alt_dict['category_data'][title] = label
+
+    def InitializeCategoryData(self):
+        for label in self.labels:
+            title = self.ConvertToTitle(label)
+            self.alt_dict['category_data'][title] = []
+            self.alt_dict['category_data'][title].append({label: 0})
+
+    def UpdateCategoryData(self, ppn, features):
+        for feature in features:
+            title = self.ConvertToTitle(feature)
+            #if feature in self.alt_dict["category_data"][title]:
+            #    self.alt_dict['category_data'][title][feature] += 1
+            if any(feature in x for x in self.alt_dict['category_data'][title]):
+                self.alt_dict['category_data'][title][feature] += 1
+
 
     def GetFeatures(self, predictions):
         features = []
@@ -95,7 +137,7 @@ class JsonBuilder:
                 if pred > self.threshold:
                     idx = np.argmax(predictions)
                     features[self.labels[idx]] = highest_pred
-        return features
+        return features        
 
     def BuildCustomPath(self, image_path):
         custom_path = "dist/ChasingUnicornsAndVampires/assets/images"
@@ -105,6 +147,11 @@ class JsonBuilder:
         #path = os.path.join(custom_path, ppn, filename) + 'jpg'
         path = custom_path + "/" + ppn + "/" + filename + "jpg"
         return path
+
+    def ConvertToTitle(self, label):
+        if label.find("_") > 0:
+            label.replace("_", " ")
+        return label.title()
 
         
 
