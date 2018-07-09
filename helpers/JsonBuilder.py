@@ -43,12 +43,12 @@ class JsonBuilder:
         self.UpdateCategoryData(ppn, features)
 
         image_dict = {}
-        image_dict['features'] = features
+        image_dict['classes'] = features
         image_dict['path'] = path
         image_dict['ppn'] = ppn
 
         image_dict_acc = {}
-        image_dict_acc['features'] = features_with_acc
+        image_dict_acc['classes'] = features_with_acc
         image_dict_acc['path'] = path
         image_dict_acc['ppn'] = ppn
 
@@ -67,12 +67,12 @@ class JsonBuilder:
             self.UpdateCategoryData(ppn, features)
 
             image_dict = {}
-            image_dict['features'] = features
+            image_dict['classes'] = features
             image_dict['path'] = path
             image_dict['ppn'] = ppn
 
             image_dict_acc = {}
-            image_dict_acc['features'] = features_with_acc
+            image_dict_acc['classes'] = features_with_acc
             image_dict_acc['path'] = path
             image_dict_acc['ppn'] = ppn
 
