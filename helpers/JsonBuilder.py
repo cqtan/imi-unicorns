@@ -1,7 +1,7 @@
-import json
 import numpy as np
-import os
+import json
 import math
+import os
 
 class JsonBuilder:
 
@@ -88,13 +88,13 @@ class JsonBuilder:
                 self.master_dict["book_data"][ppn].append(feature)
 
         if ppn not in self.alt_dict["book_data"]:
-            self.alt_dict["book_data"][ppn] = []
+            self.alt_dict["book_data"][ppn] = {}
 
         for feature in features:
             if feature not in self.alt_dict["book_data"][ppn]:
-                self.alt_dict["book_data"][ppn].append({feature: 1})
+                self.alt_dict["book_data"][ppn][feature] = 1
             else:
-                self.alt_dict["book_data"][ppn][feature] += 1  
+                self.alt_dict["book_data"][ppn][feature] += 1
         
     def AppendCategoryData(self):
         for label in self.labels:
@@ -104,17 +104,14 @@ class JsonBuilder:
     def InitializeCategoryData(self):
         for label in self.labels:
             title = self.ConvertToTitle(label)
-            self.alt_dict['category_data'][title] = []
-            self.alt_dict['category_data'][title].append({label: 0})
+            self.alt_dict['category_data'][title] = {}
+            self.alt_dict['category_data'][title][label] = 0
 
     def UpdateCategoryData(self, ppn, features):
         for feature in features:
             title = self.ConvertToTitle(feature)
-            #if feature in self.alt_dict["category_data"][title]:
-            #    self.alt_dict['category_data'][title][feature] += 1
-            if any(feature in x for x in self.alt_dict['category_data'][title]):
-                self.alt_dict['category_data'][title][feature] += 1
-
+            if feature in self.alt_dict["category_data"][title]:
+                self.alt_dict['category_data'][title][feature] += 1 
 
     def GetFeatures(self, predictions):
         features = []
@@ -149,11 +146,4 @@ class JsonBuilder:
         return path
 
     def ConvertToTitle(self, label):
-        if label.find("_") > 0:
-            label.replace("_", " ")
-        return label.title()
-
-        
-
-
-        
+        return label.replace("_", " ").title()

@@ -2,21 +2,21 @@
     "category_data": {
         "Vase": "vase",
         "Church": "church",
-        "Suspension_Bridge": "suspension_bridge",
+        "Suspension Bridge": "suspension_bridge",
         "Pedestal": "pedestal",
         "Swing": "swing",
         "Castle": "castle",
         "Airship": "airship",
         "Pickelhaube": "pickelhaube",
-        "Military_Uniform": "military_uniform",
-        "Prayer_Rug": "prayer_rug",
+        "Military Uniform": "military_uniform",
+        "Prayer Rug": "prayer_rug",
         "Rule": "rule",
         "Doormat": "doormat",
         "Envelope": "envelope",
         "Fountain": "fountain",
-        "Book_Jacket": "book_jacket",
-        "Crossword_Puzzle": "crossword_puzzle",
-        "Slide_Rule": "slide_rule"
+        "Book Jacket": "book_jacket",
+        "Crossword Puzzle": "crossword_puzzle",
+        "Slide Rule": "slide_rule"
     },
     "book_data": {
         "PPN61019657X": [

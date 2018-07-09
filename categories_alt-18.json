@@ -1,228 +1,84 @@
 {
     "category_data": {
-        "Vase": [
-            {
-                "vase": 0
-            }
-        ],
-        "Church": [
-            {
-                "church": 0
-            }
-        ],
-        "Suspension_Bridge": [
-            {
-                "suspension_bridge": 0
-            }
-        ],
-        "Pedestal": [
-            {
-                "pedestal": 0
-            }
-        ],
-        "Swing": [
-            {
-                "swing": 0
-            }
-        ],
-        "Castle": [
-            {
-                "castle": 0
-            }
-        ],
-        "Airship": [
-            {
-                "airship": 0
-            }
-        ],
-        "Pickelhaube": [
-            {
-                "pickelhaube": 0
-            }
-        ],
-        "Military_Uniform": [
-            {
-                "military_uniform": 0
-            }
-        ],
-        "Prayer_Rug": [
-            {
-                "prayer_rug": 0
-            }
-        ],
-        "Rule": [
-            {
-                "rule": 0
-            }
-        ],
-        "Doormat": [
-            {
-                "doormat": 0
-            }
-        ],
-        "Envelope": [
-            {
-                "envelope": 0
-            }
-        ],
-        "Fountain": [
-            {
-                "fountain": 0
-            }
-        ],
-        "Book_Jacket": [
-            {
-                "book_jacket": 0
-            }
-        ],
-        "Crossword_Puzzle": [
-            {
-                "crossword_puzzle": 0
-            }
-        ],
-        "Slide_Rule": [
-            {
-                "slide_rule": 0
-            }
-        ]
+        "Vase": {
+            "vase": 0
+        },
+        "Church": {
+            "church": 0
+        },
+        "Suspension Bridge": {
+            "suspension_bridge": 0
+        },
+        "Pedestal": {
+            "pedestal": 0
+        },
+        "Swing": {
+            "swing": 0
+        },
+        "Castle": {
+            "castle": 0
+        },
+        "Airship": {
+            "airship": 0
+        },
+        "Pickelhaube": {
+            "pickelhaube": 0
+        },
+        "Military Uniform": {
+            "military_uniform": 0
+        },
+        "Prayer Rug": {
+            "prayer_rug": 1
+        },
+        "Rule": {
+            "rule": 0
+        },
+        "Doormat": {
+            "doormat": 0
+        },
+        "Envelope": {
+            "envelope": 27
+        },
+        "Fountain": {
+            "fountain": 2
+        },
+        "Book Jacket": {
+            "book_jacket": 6
+        },
+        "Crossword Puzzle": {
+            "crossword_puzzle": 0
+        },
+        "Slide Rule": {
+            "slide_rule": 4
+        }
     },
     "book_data": {
-        "PPN61019657X": [
-            {
-                "slide_rule": 1
-            },
-            {
-                "slide_rule": 1
-            }
-        ],
-        "PPN61133660X": [
-            {
-                "prayer_rug": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "book_jacket": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "book_jacket": 1
-            },
-            {
-                "book_jacket": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "envelope": 1
-            },
-            {
-                "book_jacket": 1
-            }
-        ],
-        "PPN61137420X": [
-            {
-                "slide_rule": 1
-            },
-            {
-                "slide_rule": 1
-            }
-        ],
-        "PPN61169042X": [
-            {
-                "fountain": 1
-            }
-        ],
-        "PPN61169204X": [
-            {
-                "book_jacket": 1
-            }
-        ],
-        "PPN61243334X": [
-            {
-                "book_jacket": 1
-            }
-        ],
-        "PPN61294736X": [
-            {
-                "fountain": 1
-            }
-        ],
-        "PPN61383755X": [
-            {
-                "envelope": 1
-            }
-        ]
+        "PPN61019657X": {
+            "slide_rule": 2
+        },
+        "PPN61133660X": {
+            "prayer_rug": 1,
+            "envelope": 26,
+            "book_jacket": 4
+        },
+        "PPN61137420X": {
+            "slide_rule": 2
+        },
+        "PPN61169042X": {
+            "fountain": 1
+        },
+        "PPN61169204X": {
+            "book_jacket": 1
+        },
+        "PPN61243334X": {
+            "book_jacket": 1
+        },
+        "PPN61294736X": {
+            "fountain": 1
+        },
+        "PPN61383755X": {
+            "envelope": 1
+        }
     },
     "image_data": [
         {

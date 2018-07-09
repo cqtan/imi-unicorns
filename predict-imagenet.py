@@ -43,7 +43,7 @@ class ImageClassifier:
             predictions = self.resnet_model.predict(processed_image)
 
             # convert the probabilities to class labels
-            # If you want to see the top 3 predictions, specify it using the top argument
+            # If you want to see the top 3 predictions, specify it using the 'top=3' argument
             label_resnet = decode_predictions(predictions)
             _, label, acc = label_resnet[0][0]
             #self.appendCountsOnly(label, acc, 0.75)
@@ -69,8 +69,8 @@ class ImageClassifier:
             json.dump(ordered_dict, json_file, indent=4)
         print("Created " + self.output_filename)
 
+
 if __name__ == '__main__':
-    filename = 'images/cat.jpg'
 
     # Configure general logging
     current_time = strftime("%Y-%m-%d_%H-%M-%S", gmtime())

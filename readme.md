@@ -37,11 +37,13 @@ Once the model and label-binarizer have been created, then predictions can be ma
 (model and label-binarizer names may vary!)
 
 Output files are (currently):
-* categories.json
-* categories_alt.json
+* categories-18.json
+* categories_alt-18.json
 * another log file
 
-Difference between the two is that the categories_alt.json includes the accuracy of the predicted label. Reason for this, is to be able to sort images by their predicted accuracy, making images with high accuracy be shown first.
+(note: the '18' is amount of classes)
+
+Difference between the two is that the categories_alt.json includes the **accuracy** and **count** of the predicted label. Reason for this, is to be able to sort images by their predicted accuracy, making images with high accuracy be shown first.
 * Accuracies are Integers ranging from 75-100
 
 ---
