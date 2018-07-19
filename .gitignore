@@ -8,6 +8,9 @@ for-testing
 .vscode
 tmp*
 storage
+data3
+test.json
+test2.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

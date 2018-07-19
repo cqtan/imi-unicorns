@@ -21,7 +21,7 @@ import pickle
 import os
 
 # Manual Settings (For every new version, increment the postfix!)
-file_postfix = "sbb2"
+file_postfix = "sbb3"
 
 model_filepath = "model-" + file_postfix + ".h5"
 lb_pickle_name = "lb-" + file_postfix + ".pickle"

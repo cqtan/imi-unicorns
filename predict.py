@@ -15,7 +15,8 @@ import pickle
 import os
 
 # Usage:
-# python predict.py -m model-sbb1.h5 -l lb-sbb1.pickle -d data
+# python predict.py -m model-sbb3.h5 -l lb-sbb3.pickle -d data 
+# Use this as data for all sbb images. C:/Users/Kaito/Desktop/sbb/Luisa/output2/content
 
 output_path = "out"
 

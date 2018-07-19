@@ -1,0 +1,104 @@
+{
+    "category_data": {
+        "Botany": "botany",
+        "Crest": "crest",
+        "Handwriting": "handwriting",
+        "Map": "map",
+        "Portait": "portait",
+        "Botany222": "botany222",
+        "Crest222": "crest222",
+        "Handwriting222": "handwriting222",
+        "Map222": "map222"
+    },
+    "book_data": {
+        "PPN61012823X": [
+            "map",
+            "handwriting",
+            "map222",
+            "handwriting222"
+        ],
+        "PPN61019657X": [
+            "handwriting",
+            "handwriting222"
+        ],
+        "PPN61030769X": [
+            "crest",
+            "map",
+            "crest222",
+            "map222"
+        ],
+        "PPN61033168X": [
+            "map",
+            "crest",
+            "map222"
+        ],
+        "PPNjsdfkjsdkf": [
+            "map",
+            "crest"
+        ],
+        "PPNxxxxxxxxxx": [
+            "map222"
+        ]
+    },
+    "image_data": [
+        {
+            "features": [],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPN61012823X/0056_Page1_Block1.jpg",
+            "ppn": "PPN61012823X"
+        },
+        {
+            "features": [
+                "new222"
+            ],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPN61012823X/0059_Page1_Block4.jpg",
+            "ppn": "PPN61012823X"
+        },
+        {
+            "features": [
+                "map222",
+                "map"
+            ],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPN61012823X/0063_Page1_Block1.jpg",
+            "ppn": "PPN61012823X"
+        },
+        {
+            "features": [],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPN61012823X/0067_Page1_Block1.jpg",
+            "ppn": "PPN61012823X"
+        },
+        {
+            "features": [
+                "new222"
+            ],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPN61012823X/0071_Page1_Block1.jpg",
+            "ppn": "PPN61012823X"
+        },
+        {
+            "features": [],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPN61012823X/0119_Page1_Block1.jpg",
+            "ppn": "PPN61012823X"
+        },
+        {
+            "features": [
+                "handwriting222",
+                "handwriting"
+            ],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPN61012823X/0227_Page1_Block1.jpg",
+            "ppn": "PPN61012823X"
+        },
+        {
+            "features": [
+                "bullocks"
+            ],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPNzzzzzzzz/0227_Page1_Block1.jpg",
+            "ppn": "PPNzzzzzzzz"
+        },
+        {
+            "features": [
+                "handwriting222"
+            ],
+            "path": "dist/ChasingUnicornsAndVampires/assets/images/PPN6qqqqqqqqq/0227_Page1_Block1.jpg",
+            "ppn": "PPN6qqqqqqqqq"
+        }
+    ]
+}
