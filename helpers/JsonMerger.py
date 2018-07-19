@@ -5,6 +5,7 @@ import json
 
 # Usage:
 # python helpers/JsonMerger.py --json1 test.json --json2 test2.json 
+# For production: -j1 categories_prod.json -j2 categories-5_renamed.json
 def mergeJson():
     start_time = time()
     output_path = "out"
@@ -58,10 +59,10 @@ def mergeJson():
             unique_image_ref1.add(dict1["path"])
             if dict2["path"] == dict1["path"]:
                 # Check features of image data 2 not subset of image data 1, then append to 1
-                if not all(f2 in dict1["features"] for f2 in dict2["features"]):
-                    new_set = set(dict1["features"])
-                    new_set.update(dict2["features"])
-                    dict1["features"] = list(new_set)
+                if not all(f2 in dict1["classes"] for f2 in dict2["classes"]):
+                    new_set = set(dict1["classes"])
+                    new_set.update(dict2["classes"])
+                    dict1["classes"] = list(new_set)
 
     # Adding missing image data list values from image data 2
     for val in unique_image_ref2:
