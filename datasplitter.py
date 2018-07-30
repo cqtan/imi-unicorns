@@ -14,7 +14,7 @@ import os
 # Usage: python datasplitter.py -d data_transfer
 
 # Manual Settings (For every new version, increment the postfix!)
-file_postfix = "-sbb5-transfer"
+file_postfix = "-v1"
 lb_pickle_name = "labels" + file_postfix + ".pickle"
 root_dir = "train-data" + file_postfix + "/"
 tmp_data_dir = "train/"

@@ -27,7 +27,7 @@ import os
 # Manual Settings (For every new version, increment the postfix!)
 file_postfix = "v1"
 model_filepath = "model-" + file_postfix + ".h5"
-epoch_amount = 50
+epoch_amount = 25
 
 #################################################################################################################################
 #################################################################################################################################
@@ -69,7 +69,6 @@ for cl in lb.classes_:
 ############ Default batch size is 8 but you can reduce/increase it depending on how powerful your machine is. 
 
 batch_size=32
-
 train_datagen = image.ImageDataGenerator(
         rotation_range=25,
         width_shift_range=0.1,

@@ -19,7 +19,7 @@ import os
 
 # Usage:
 # python predict.py -m model.h5 -l label.pickle -d data
-# Note: Prediction might take a while! On GTX 980ti about 2 hours for 200k jpg images.
+# NOTE: Prediction might take a while! On GTX 980ti about 2 hours for 200k jpg images.
 
 image_size = 224
 write_images = False

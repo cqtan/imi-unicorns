@@ -19,7 +19,7 @@ import os
 
 # Usage: python train_keras.py -t train-data/train -v train-data/val -l labels.pickle
 
-epoch_amount = 100
+epoch_amount = 25
 image_size = 224
 batch_size=24
 model_name = 'model-keras'

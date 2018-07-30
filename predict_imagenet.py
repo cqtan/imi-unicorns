@@ -18,7 +18,7 @@ import os
 
 # This script simply uses the VGG16 Keras model to predict a subset 
 # of the 1000 Imagenet classes and creates a JSON file.
-# Note: Prediction might take a while! On GTX 980ti about 2 hours for 200k jpg images.
+# NOTE: Prediction might take a while! On GTX 980ti about 2 hours for 200k jpg images.
 
 # Usage:
 # python predict_imagenet.py -d data
