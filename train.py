@@ -22,10 +22,10 @@ import os
 # This script uses the VGG in the "cnn" directory. If you want to use the VGG from Keras, 
 # use the script "imagenet_transfer.py"
 
-# Usage: python train.py -d data
+# Usage: python train.py -t train-data/train -v train-data/val -l labels.pickle
 
 # Manual Settings (For every new version, increment the postfix!)
-file_postfix = "sbb3"
+file_postfix = "v1"
 model_filepath = "model-" + file_postfix + ".h5"
 epoch_amount = 50
 
@@ -52,9 +52,9 @@ logging.info("TRAINING SCRIPT")
 ############ Default image size is 160    
 img_size=224
 ap = argparse.ArgumentParser()
+ap.add_argument("-t","--train_dir",type=str, required=True,help="(required) the train data directory")
+ap.add_argument("-v","--val_dir",type=str, required=True,help="(required) the validation data directory")
 ap.add_argument("-l","--label",type=str, required=True,help="(required) the label binarizer")
-ap.add_argument("-train","--train_dir",type=str, required=True,help="(required) the train data directory")
-ap.add_argument("-val","--val_dir",type=str, required=True,help="(required) the validation data directory")
 args = vars(ap.parse_args())
 
 lb = pickle.loads(open(args["label"], "rb").read())

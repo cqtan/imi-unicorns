@@ -15,7 +15,7 @@ import os
 
 # Manual Settings (For every new version, increment the postfix!)
 file_postfix = "-sbb5-transfer"
-lb_pickle_name = "lb" + file_postfix + ".pickle"
+lb_pickle_name = "labels" + file_postfix + ".pickle"
 root_dir = "train-data" + file_postfix + "/"
 tmp_data_dir = "train/"
 tmp_val_dir = "val/"
