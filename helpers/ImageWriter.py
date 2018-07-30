@@ -28,5 +28,5 @@ def WriteImage(image, outpath, image_path, label, confidence):
     if not os.path.exists(out_path):
         os.makedirs(out_path)
     out_path = os.path.join(out_path,label) + "-" + str(confidence) + '.jpg'
-    print("Writing image to: " + out_path)
+    #print("Writing image to: " + out_path)
     output.save(out_path)

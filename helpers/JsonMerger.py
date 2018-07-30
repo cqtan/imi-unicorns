@@ -4,8 +4,11 @@ import logging
 import json
 
 # Usage:
-# python helpers/JsonMerger.py --json1 test.json --json2 test2.json 
+# python helpers/JsonMerger.py --json1 test.json --json2 test2.json
+# helpers/JsonMerger.py --json1 categories_9.json --json2 categories/ 
 # For production: -j1 categories_prod.json -j2 categories-5_renamed.json
+# python helpers/JsonMerger.py -j1 categories_vgg_v6.json -j2 categories/categories_yolo1.json
+# python helpers/JsonMerger.py -j1 out/categories_merged1.json -j2 categories/categories-18.json
 def mergeJson():
     start_time = time()
     output_path = "out"

@@ -1,16 +1,13 @@
 # Custom
-venv-pokedex
+venv-*
 logs
 train-data
 val-data
-for-testing
 *.log
 .vscode
-tmp*
 storage
-data3
-test.json
-test2.json
+out
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
