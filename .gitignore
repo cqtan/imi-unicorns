@@ -1,12 +1,12 @@
 # Custom
-venv-*
-logs
-train-data
-val-data
-*.log
 .vscode
-storage
-out
+Helpers/classify_and_create_json/venv-*
+Helpers/classify_and_create_json/train-data
+Helpers/classify_and_create_json/val-data
+Helpers/classify_and_create_json/*.log
+Helpers/classify_and_create_json/out
+Helpers/classify_and_create_json/storage
+Helpers/classify_and_create_json/logs
 
 
 # Byte-compiled / optimized / DLL files
