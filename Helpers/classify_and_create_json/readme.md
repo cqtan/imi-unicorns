@@ -143,7 +143,8 @@ An overview of evaluation metrics to be included every model.
 Alternative to ImageNet models: YOLO (an object detection model trained on the COCO dataset)
 * [https://pjreddie.com/darknet/yolo/](https://pjreddie.com/darknet/yolo/)
 
-
+Public Neural Network Models. Maybe you might find a good model as a basis.
+* [https://www.gradientzoo.com/](https://www.gradientzoo.com/)
 
 
 
