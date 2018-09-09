@@ -12,11 +12,6 @@ To get the Application running follow the steps belowe.
 git clone git@github.com:CouchCat/imi-unicorns.git
 ```
 
-checkout backend (temporary)
-```
-git checkout backend
-```
-
 and go into the Application Folder
 
 ```
