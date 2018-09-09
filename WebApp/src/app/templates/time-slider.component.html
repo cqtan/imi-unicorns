@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <p class="text-left m-0"> {{currentMinMax[0]}}</p>
+            </div>
+            <div class="col-6">
+                <p class="text-right m-0"> {{currentMinMax[1]}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12" *ngIf="config">
+        <nouislider [config]="config" [(ngModel)]="currentMinMax" (ngModelChange)="debouncedChangeEvent($event)" style="padding-left: 0.75rem; margin-right: 0.75rem;"></nouislider>
+    </div>
+</div>
+

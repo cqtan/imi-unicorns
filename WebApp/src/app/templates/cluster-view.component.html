@@ -1,0 +1,36 @@
+<div class="container-fluid h-100">
+    <div class="row">
+        <div class="col-2 title__header">
+            <div class="row">
+                <div class="col-md-12" >
+                    <img src="/dist/ChasingUnicornsAndVampires/assets/scalableVectorGraphics/logo-lila.svg" height="60px" width = "60px" style="float:left; padding-right: 10px">                   
+                    <h4 class="title" > Chasing Unicorns and Vampires</h4>
+                    <div style="clear:both"></div>
+                </div>
+            </div> 
+            <div class="divider"></div>
+            <p>Erkunde die alten Bestände der Staatsbibliothek Berlin aus einer anderen Perspektive. Vergleiche und filtere die Bilder alter Aufzeichnungen.</p>
+            <div class="divider"></div>
+            <!--img src="" alt="logo"-->
+            <div class="inline-children">
+                <strong>Steuerung</strong> <br>               
+                <button type="button" class="btn btn-primary btn-sm" (click)="insertClusterRow()"  [disabled]="numberOfRows == 3"> + </button>        
+                <p class="ml-2">Reihe hinzufügen</p>
+            </div>
+            <div class="inline-children">
+                <template #placeHolder style="padding-left: 10px"> </template>
+            </div>
+
+            <div class="divider"></div>
+            <strong>Visualisierungen</strong>
+            <button type="button" class="btn btn-primary btn-sm vis-btn" routerLink="/cluster-view"> Cluster Ansicht </button>
+            <button type="button" class="btn btn-primary btn-sm vis-btn" routerLink="/map-view"> Weltkarten Ansicht </button>
+        </div>
+        <div class="col-10">
+            <div class="row flex-column main__content">
+                <cluster-row class="flex__div" [zoomFactor]="zoomFactor" [(sliderRange)]="currentSliderRange" (minMaxRange)="minMaxOfCategory($event)" (deleted)="onDelete()"> </cluster-row>
+                <ng-template #parent> </ng-template>
+            </div>
+        </div>
+   </div>
+</div>

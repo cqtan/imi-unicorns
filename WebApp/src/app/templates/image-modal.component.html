@@ -1,0 +1,52 @@
+<div class="container-fluid p-0 modal__content" style="position: absolute; top: 0; left: 0;">
+    <div class="row">                                      
+        <div class="col-3 modal__content" style="background: #f8f7f5;" >
+            <div class="row">
+                <ul class="list-group" style="background: #f8f7f5;">
+                    <li class="list-group-item item__header"> Buch Informationen </li> 
+                    <ng-container *ngIf="bookInformation">
+                        <li class="list-group-item" title="{{bookInformation.title}}" style="text-decoration: underline dotted">Buchtitel: {{bookInformation.title[0]}}</li>
+                        <li class="list-group-item" title="{{bookInformation.creator}}" style="text-decoration: underline dotted">Author: {{bookInformation.creator[0]}} </li>
+                        <ng-container *ngIf="bookInformation.publisher.length > 1">
+                            <li class="list-group-item" title="{{bookInformation.publisher}}" style="text-decoration: underline dotted">Herausgeber: {{bookInformation.publisher[0]}} </li>
+                        </ng-container>
+                        <ng-container *ngIf="bookInformation.publisher.length == 1">
+                            <li class="list-group-item" title="{{bookInformation.publisher}}">Herausgeber: {{bookInformation.publisher}} </li>
+                        </ng-container>
+                        <li class="list-group-item">Erschienen : {{bookInformation.date}}</li>
+                        <li class="list-group-item"> Zum Buch: <a href="{{stabiLink}}" rel="noopener noreferrer" target="_blank"> Digital Staatsbibliothek </a> </li>
+                        <li class="list-group-item"> Ähnliche Bilder: 
+                            <div class="container-fluid">
+                                <div class="row" *ngIf="siblings">
+                                    <ng-container *ngFor="let sibling of siblings">
+                                        <div class="col p-1" (click)="changeImage(sibling)">
+                                            <img [src]="sibling[0].path" style="object-fit:contain; width:100%;">
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 text-left">
+                                        <button class="btn btn-sm" [disabled]="currentIndex == 0" (click)="iterateBack()"> Back </button>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button class="btn btn-sm" [disabled]="history.length == 0 || currentIndex == (history.length - 1)" (click)="iterateForward()"> Forward </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+            <div class="row" style="height: 200px;">
+                <div class="col-12">
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+                    <div id="map" style="height: 50%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 modal__content text-align">
+            <img [src]="image.path" style="object-fit:contain; width: 99%; height: 100%">
+        </div>
+    </div>
+</div>

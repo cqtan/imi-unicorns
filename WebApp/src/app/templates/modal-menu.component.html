@@ -1,0 +1,68 @@
+<div class="container-fluid modal__content" style="position: absolute; top: 0; left: 0;">
+    <div class="row">
+        <div class="col-2 p-3 modal__content" style="background: #f8f7f5;">
+            <div class="row">
+                <div class="col-8"> <p style="margin-top: 1rem"> Cluster </p> </div>
+                <div class="col-4" >
+                    <label class="switch">
+                        <input type="checkbox" (change)="trackState('clusters')" id="clusters">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <span style="display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin: 1em 0;padding: 0;"> </span>
+            <div class="row">
+                <div class="col-8"> <p style="margin-top: 1rem"> Staatsbibliothek Archieve </p> </div>
+                <div class="col-4">
+                    <label class="switch">
+                        <input type="checkbox" (change)="trackState('genres')" id="genres">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <span style="display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin: 1em 0;padding: 0;"> </span>
+            <div class="row">
+                <div class="col-8"> <p style="margin-top: 1rem"> Durchschnittsfarbe </p> </div>
+                <div class="col-4">
+                    <label class="switch">
+                        <input type="checkbox" (change)="trackState('colors')" id="colors">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-10 p-3 modal__content" style="overflow-y: auto; overflow-x: hidden;">
+            <div class="row" *ngIf="clustersBox">
+                <ng-container *ngFor="let category of categories">
+                    <div class="col-auto p-1">
+                        <a (click)="setCategory(category)"> 
+                            <img alt="Kein Bild" [src]="category.path" width="{calculateImageWdith(category)}" height="{{imageHeight}}">
+                            <div class="caption"> <br>  {{category.feature}} </div>
+                        </a>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="row" *ngIf="genresBox">
+                <ng-container *ngFor="let stabiCategory of stabiCategories">
+                    <div class="col-auto p-1">
+                        <a (click)="setGenre(stabiCategory)">
+                            <img alt="Kein Bild" [src]="stabiCategory.path" width="{calculateImageWdith(category)}" height="{{imageHeight}}">
+                            <div class="caption"> <br>  {{stabiCategory.name}} </div>
+                        </a>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="row" *ngIf="colorsBox">
+                <ng-container *ngFor="let color of colors">
+                    <div class="col-auto p-1">
+                        <a (click)="setColor(color)"> 
+                            <div [style.background]="color.name" style="width: 200px; height: 200px"> </div>
+                            <div class="caption"> <br>  {{getNamesForColor(color.name)}} </div>
+                        </a>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

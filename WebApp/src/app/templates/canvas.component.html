@@ -1,0 +1,26 @@
+<div class="container-fluid image__content">
+    <div class="row inner__image__content " style="overflow-y: auto" *ngIf="filteredImages">
+        <ng-container *ngFor="let image of filteredImages | paginate: { itemsPerPage: 20, currentPage: pageNumber, id: id}">
+            <div class="col-auto p-1">    
+                <a (click)="openImageModal(image)" *ngIf="category">
+                    <img src="{{image.path}}" height="{{imageHeight * zoomFactor}}" width="{calculateWidth(image)}" title="{{category.category}}"> 
+                </a>                                 
+                <a (click)="openImageModal(image)" *ngIf="stabiCategory">
+                    <img src="{{image.path}}" height="{{imageHeight * zoomFactor}}" width="{calculateWidth(image)}" title="{{stabiCategory.name}}"> 
+                </a>
+                <a (click)="openImageModal(image)" *ngIf="color">
+                    <img  src="{{image.path}}" height="{{imageHeight * zoomFactor}}" width="{calculateWidth(image)}" title="{{color.name}}"> 
+                </a>
+            </div>               
+        </ng-container>
+        <ng-container *ngIf="filteredImages.length == 0">
+            <div class="col-12" style="margin-top: 1rem;"> <h1 class="text-center"> Keine Bilder in der Zeitspanne gefunden </h1> </div>
+        </ng-container>
+        <div id="modal-container" class="hidden"></div>
+        <div id="overlay" (click)="destroyModal()" class="hidden"></div>
+    </div>
+    <div class="text-center">
+        <pagination-controls (pageChange)="pageNumber = $event" [id]="id"></pagination-controls>
+    </div>
+</div>
+ 

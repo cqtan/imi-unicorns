@@ -1,0 +1,29 @@
+<div class="container-fluid h-100">
+    <div class="row">
+        <div class="col-2 title__header">                  
+            <div class="row">
+                <div class="col-md-12" >
+                    <img src="/dist/ChasingUnicornsAndVampires/assets/scalableVectorGraphics/logo-lila.svg" height="60px" width = "60px" style="float:left; padding-right: 10px">                   
+                    <h4 class="title" > Chasing Unicorns and Vampires</h4>
+                    <div style="clear:both"></div>
+                </div>
+            </div>                   
+            <div class="divider"></div>
+            <p>Erkunde die Bestände der Staatsbibliothek in einer Kartenansicht. Suche Inhalte über eine geografische Perspektive.</p>
+            <div class="divider"></div>
+            <time-slider *ngIf="minMax" [currentMinMax]='minMax' (range)="onSliderRangeChange($event)"> </time-slider>
+            <div class="divider"></div>
+            <strong>Visualisierungen</strong>
+            <button type="button" class="btn btn-primary btn-sm vis-btn" routerLink="/cluster-view"> Cluster Ansicht </button>
+            <button type="button" class="btn btn-primary btn-sm vis-btn" routerLink="/map-view"> Weltkarten Ansicht </button>
+        </div>
+        <div class="col-10">
+            <div class="row flex-column main__content">
+                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+                <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+                <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+                <div id="map" style="height: 100%;"> </div>
+            </div>
+        </div>
+    </div>
+</div>
