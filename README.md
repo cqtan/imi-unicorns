@@ -44,14 +44,24 @@ npm start
 
 for test purposes build the application once with:
 ```
-ng build --prod
+npm run build
+```
+
+for production builds, minified and uglyfied:
+```
+npm run prod
 ```
 
 ### Python Flask (Server)
 
 Next go back into the root directory 
 ```
-cd ..
+cd Server
+```
+
+create a Python virtual environment
+```
+python -m venv .
 ```
 
 and install the dependencies of python with:
