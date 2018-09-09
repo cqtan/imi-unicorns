@@ -140,8 +140,11 @@ For some tricks to improve the performance of your model when needed.
 An overview of evaluation metrics to be included every model.
 * [https://machinelearningmastery.com/metrics-evaluate-machine-learning-algorithms-python/](https://machinelearningmastery.com/metrics-evaluate-machine-learning-algorithms-python/)
 
+Alternative to ImageNet models: YOLO (an object detection model trained on the COCO dataset)
+* [https://pjreddie.com/darknet/yolo/](https://pjreddie.com/darknet/yolo/)
 
-
+Public Neural Network Models. Maybe you might find a good model as a basis.
+* [https://www.gradientzoo.com/](https://www.gradientzoo.com/)
 
 
 
