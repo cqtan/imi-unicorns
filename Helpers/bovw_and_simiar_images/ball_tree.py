@@ -7,7 +7,7 @@
 #   histograms_XX.pkl -> created frm features_resnet.py
 #   image_ids.pkl
 # 
-#   Using how to use the ball tree is explained in: 
+#   How to use the ball tree is explained in: 
 #   http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.BallTree.html
 
 
@@ -47,7 +47,7 @@ def create_ball_tree(query_hists):
 
 indices = np.array(pickle.load(open('image_ids.pkl', 'rb')))
 
-histograms = np.array(pickle.load(open('histograms_1500.pkl', 'rb'))) 
+histograms = np.array(pickle.load(open('histograms_8500.pkl', 'rb'))) 
 images = np.array(pickle.load(open('images_new_names.pkl', 'rb')))
 
 query_hists = extract_elements(histograms, indices)
