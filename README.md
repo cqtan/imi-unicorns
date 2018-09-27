@@ -1,4 +1,4 @@
-# ChasingUnicornsAndVampires
+# Chasing Unicorns and Vampires in a Library 
 
 ## Installation
 
