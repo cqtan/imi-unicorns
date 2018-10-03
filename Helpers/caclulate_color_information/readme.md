@@ -7,19 +7,24 @@ that are stored in the `content`-folder which had been created by the script `cl
 
 ---
 
-## Dominant colors
+## Features
+
+### Dominant colors
 
 Dominant colors are the N most frequent colors that occur in an image and they can be used to describe the image. 
-Matching dominant colors of images is an easy and fast way to possibly determine similar images as these are more likely to have similar colors.
-Dominant colors are found by clustering all colors of an image. 
+Matching dominant colors of images is an easy and fast way to possibly determine similar images as these are more likely to have similar colors. Dominant colors are found by clustering all colors of an image. 
 
 The script `dominant_colors.py` applies the MiniBatchKMeans-Algorithm that is provided by the Scikit-Learn framework.
 
----
+### Mean colors
+
+Mean colors are less useful to identify similar images. However, providing that data allows to implement a functionality in the application that filters the results by a certain color.
 
 ## Running the script
 
-Navigate to the folder where the script is located and run: `python dominant_colors.py`
+Navigate to the folder where the script is located and run: 
+
+`python dominant_colors.py`
 
 In case of unexpected interruption rerun the script. 
 All information that had been calculated before will be stored in the `color_infos.pkl` file which in turn will be used as a starting point.  
@@ -28,8 +33,17 @@ All information that had been calculated before will be stored in the `color_inf
 
 ## Note
 
+Most of the images are rather monochromatic. To achieve a better representation of the images it is useful to obtain colors which are as different but still as frequent as possible. Therefore, the clustering was performed with a higher cluster number. The number of colors is reduced afterwards.
+
 As the script uses the images from the `content`-folder both either need to be stored in the same location or the path 
 that points to the folder has to be updated respectively. 
+
+The resulting `.pkl` file contains the following information: 
+* RGB-values of the dominant colors
+* Hexadecimal codes of the dominant colors
+* Hexadecimal codes of the mean colors
+* PPN 
+* Filename
 
 ---
 
