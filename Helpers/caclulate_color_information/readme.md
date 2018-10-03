@@ -22,11 +22,7 @@ Mean colors are less useful to identify similar images. However, providing that 
 
 ## Running the script
 
-It is advisable to create a new virtual environment and install all dependencies from `requirements.txt`:
-
-`pip install -r requirements.txt`
-
-Activate the virtual environment, navigate to the folder where the script is located and run: 
+Navigate to the folder where the script is located and run: 
 
 `python dominant_colors.py`
 
