@@ -7,12 +7,10 @@
  #  https://keras.io/applications/#resnet50
 
 
-import os, shutil, random, pickle, sys, csv, traceback, warnings
+import os, shutil, random, pickle, sys, traceback, warnings
 import numpy as np
-import matplotlib.pyplot as plt
-import webcolors
 
-from sklearn.cluster import MiniBatchKMeans, KMeans
+from sklearn.cluster import MiniBatchKMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.neighbors import DistanceMetric
@@ -25,11 +23,8 @@ from keras.models import Model
 
 from keras.preprocessing.image import load_img, img_to_array
 
-from skimage import io
 from PIL import Image
 from datetime import datetime
-from scipy.spatial import distance
-
 
 
 warnings.simplefilter('ignore', Image.DecompressionBombWarning)
