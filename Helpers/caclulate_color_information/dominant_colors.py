@@ -15,15 +15,13 @@
 # -*- coding: utf-8 -*-
 
 
-import os, shutil, random, pickle, sys, csv, traceback, warnings
+import os, random, pickle, sys, traceback, warnings
 import numpy as np
-import matplotlib.pyplot as plt
 import webcolors
 
-from sklearn.cluster import MiniBatchKMeans, KMeans
+from sklearn.cluster import MiniBatchKMeans
 from sklearn.neighbors import DistanceMetric
 
-from skimage import io
 from PIL import Image
 from datetime import datetime
 from scipy.spatial import distance
