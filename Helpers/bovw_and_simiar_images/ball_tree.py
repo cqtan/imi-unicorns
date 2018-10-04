@@ -11,9 +11,8 @@
 #   http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.BallTree.html
 
 
-import os, pickle, traceback, random
+import os, pickle, traceback
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.neighbors import BallTree
 from datetime import datetime
 
@@ -79,7 +78,7 @@ if os.path.exists('img_distances.hdf5'):
 
 # if files have not been created, query the tree and create files
 else:
-    img_distances, img_indices = tree.query(query_hists, k=3)     
+    img_distances, img_indices = tree.query(query_hists, k=6)     
     print(img_indices)
 
     with h5py.File('img_indices.hdf5', 'w') as f:
