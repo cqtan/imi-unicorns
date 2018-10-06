@@ -1,4 +1,4 @@
-# Chasing Unicorns and Vampires in a Library 
+# Chasing Unicorns and Vampires in a Library
 
 ## Installation
 
@@ -18,12 +18,20 @@ and go into the Application Folder
 cd imi-unicorns
 ```
 
+### Database
+
+To restore or create the Database excute the command:
+
+```
+mongorestore -d unicorns ./UnicornsDB/unicorns
+```
+
 ### Angular 2 (Web application)
 
 Go into the Application Folder:
 
 ```
-cd WebApp 
+cd WebApp
 ```
 
 and install all dependencies
@@ -49,7 +57,7 @@ npm run prod
 
 ### Python Flask (Server)
 
-Next go back into the root directory 
+Next go back into the root directory
 ```
 cd Server
 ```
