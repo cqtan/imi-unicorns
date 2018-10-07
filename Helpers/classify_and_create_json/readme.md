@@ -1,6 +1,6 @@
 # Pretrained VGGnet
 
-Uses the pretrained VGGnet to classify certain classes and either outputs a json file specifically made for our SBB databank or outputs the images themselves in a categorized fashion.
+Uses the pretrained VGGnet to classify certain classes and either outputs a json file specifically made for our SBB databank or outputs the images themselves in a categorized fashion. The goal is to be able to categorize the SBB images under certain categories and to create a file, which maps information of the images to their classified category.
 
 Example JSON files can be viewed in the "JSONs" directory.
 
