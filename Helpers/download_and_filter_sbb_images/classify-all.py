@@ -12,8 +12,8 @@ from time import gmtime, strftime
 from datetime import datetime
 
 '''
-Reads all images listed in the 'data_path' variable and classifies images according to
-the classes in listed in the label.pickle file. Currently:
+Reads all images listed in the 'data_path1' and 'data_path2' variable and classifies images according to
+the classes listed in the label.pickle files. Currently:
 - bar_code
 - blanks
 - color_palette
@@ -26,14 +26,14 @@ Also converts all images from TIFF to JPEG and saves them in the 'output' direct
 their respective class and PPN.
 '''
 
-model_path1 = 'filter_v10.model'
-labelbin_path1 = 'label_v10.pickle'
-model_path2 = 'filter2_v3.model'
-labelbin_path2 = 'label2_v3.pickle'
+model_path1 = 'filter1.model'
+labelbin_path1 = 'label2.pickle'
+model_path2 = 'filter2.model'
+labelbin_path2 = 'label2.pickle'
 data_path1 = 'sbb/saved_images'
 #data_path1 = 'test_images' # For testing dependencies
 output_path1 = 'output1'
-data_path2 = 'output1/content'
+data_path2 = output_path1 + '/content'
 output_path2 = 'output2'
 
 # Configure amount of GPU memory in % to allocate:
@@ -147,4 +147,3 @@ filter_data(data_path2, output_path2, model2, lb2)
 
 print("[INFO] Done!")
 logging.info(str(datetime.now()) + "DONE!!!")
-

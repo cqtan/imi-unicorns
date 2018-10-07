@@ -1,6 +1,7 @@
 # USAGE
 # python train_filter.py --dataset train2 --model filter2_v3.model --labelbin label2_v3.pickle --plot plot2_v3.png
-
+# python train_filter.py -d train_images1 -m filter1.model -l label1.pickle -p plot1.png
+# python train_filter.py -d train_images2 -m filter2.model -l label2.pickle -p plot2.png
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
 matplotlib.use("Agg")
@@ -8,6 +9,8 @@ matplotlib.use("Agg")
 from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
 from keras.preprocessing.image import img_to_array
+from keras.preprocessing.image import load_img
+
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from helpers.small_vggnet import SmallVGGNet
@@ -17,7 +20,7 @@ import numpy as np
 import argparse
 import random
 import pickle
-import cv2
+#import cv2
 import os
 
 # construct the argument parse and parse the arguments
@@ -34,10 +37,11 @@ args = vars(ap.parse_args())
 
 # initialize the number of epochs to train for, initial learning rate,
 # batch size, and image dimensions
-EPOCHS = 150
+EPOCHS = 50
 INIT_LR = 1e-3
 BS = 32
 IMAGE_DIMS = (96, 96, 3)
+inputShape = (96, 96)
 
 # initialize the data and labels
 data = []
@@ -52,8 +56,9 @@ random.shuffle(imagePaths)
 # loop over the input images
 for imagePath in imagePaths:
 	# load the image, pre-process it, and store it in the data list
-	image = cv2.imread(imagePath)
-	image = cv2.resize(image, (IMAGE_DIMS[1], IMAGE_DIMS[0]))
+	#image = cv2.imread(imagePath)
+	#image = cv2.resize(image, (IMAGE_DIMS[1], IMAGE_DIMS[0]))
+	image = load_img(imagePath, target_size=inputShape)
 	image = img_to_array(image)
 	data.append(image)
  
