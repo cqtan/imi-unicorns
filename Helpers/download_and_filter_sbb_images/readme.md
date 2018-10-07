@@ -1,5 +1,5 @@
-# CNN model for filtering out unwanted Stabi images
-Created specifically to group Stabi images together that have meaningful content. This way less data is needed to be saved in the databank and clustering may be performed only on images with actual content. Furthermore, the TIFF images are converted to JPEG.
+# CNN algorithms for filtering out unwanted Stabi images
+Created specifically to group Stabi images together that have meaningful content. This way less data is needed to be saved in the databank and clustering may be performed only on images with actual content. Furthermore, the TIFF images are converted to JPEG. Instead of processing data amounting close to 1 terabyte, only around 80 GB are considered through the following steps.
 
 ---
 ## Dependencies:
@@ -13,23 +13,50 @@ Or when using Anaconda:
 * Then install the packages listed in the 'package-list.txt' with:
     * `conda install --file package-list.txt`
 
+Note: This part of the project was primarily developed on a Windows 10 computer since the GPU (GTX 980ti) was used for it's higher computational speed. Support for specific versions of dependencies may, therefore, differ depending on the OS.
+
 ---
-## tl;dr:
-Run the following to first download SSB images:
+## Downloading the SBB images:
+
+One of the first steps of this project was to download the SBB images. Run the following download SSB images:
 * `python sbbget.py`
 
-Once all images from the **OCR-PPN-Liste.txt** have been downloaded to **sbb/saved_images**, run:
-* `python classify-all.py`
-
-Output files **output1** and **output2** will be created but only the latter is of concern. Meaningful content should then be in **output2/content**. Double check other directories for outliers though!
-
-If any of the scripts are interrupted, simply rerun the interrupted script. It should pick up where it left off or when in doubt, check the last section about **Output and Logging**.
+This should download the images to the **sbb/saved_images** directory. Since this is an enormous amount of data (ca.  Terabyte) be prepared to let the code run for a while. If the script is interrupted, simply rerun the interrupted script. It should pick up where it left off or when in doubt, check the last section about **Output and Logging**.
 
 ---
-## Preparing data:
-The following sections explain in more detail the workflow of the scripts.
+## Creating the model for filtering:
 
-The script has been configured to locate the images by path, here being the **ssb** directory. Simply place all subdirectories within this directory. The subdirectories should then contain the images to be filtered. An example directory structure is as follows:
+After downloading the SBB images, filtering out the images that were considered as unimportant was the second step. For this, certain images were **manually hand-picked** from the SBB images and grouped together according to their category. At the time of this project there was an imbalance in the number of images of certain categories in which case the filtering process would be biased. Furthermore, it was also assumed that certain categories were hard for the model to properly distinguish from other categories. Therefore, 2 separate datasets were created for training:
+
+dataset1:
+
+* **blanks** (Blank pages)
+* **color_palette** (An image of a color palette)
+* **content** (The images that we want) 
+
+dataset2:
+* **bar_code** (Stabi bar codes)
+* **covers** (Simple book covers, complex ones are left out)
+* **logo** (The Stabi logo)
+* **red_stamp** (Red Stabi stamp mark)
+* **content** (The images that we want)
+
+With this, 2 different models with their associated class labels (pickle file created by the LabelBinarizer) were created by running the `train_filter.py` script twice.
+
+* `python train_filter.py -d train_images1 -m filter1.model -l label1.pickle -p plot1.png`
+* `python train_filter.py -d train_images2 -m filter2.model -l label2.pickle -p plot2.png`
+* The following are short explanations to the individual parameters:
+    * -d: path to input dataset for training (i.e., directory of images)
+    * -m: path to output model
+    * -l: path to output label binarizer
+    * -p: path to output accuracy/loss plot.png
+
+The model will then be used for the classification tasks in the next section while the pickle file provides the labels (category name / class) of the classified images. A plot.png file is also created for simple evaluation purposes. 
+
+---
+## Filter the SBB images:
+
+This **classify-all.py** script has been configured to perform 2 filtering processes since 2 models were made during the training phase. The downloaded SBB images are required here and they should be in the **sbb** directory.  The subdirectories should then contain the images to be filtered. An example directory structure is as follows:
 
 * sbb
     * saved_images
@@ -46,34 +73,13 @@ The script has been configured to locate the images by path, here being the **ss
             * ...
         * ...
 
----
-## Running the script:
-The only script you have to run is the **'classify-all'** script. The arguments to be passed are as follows:
 
-* model: path to trained model model.
-* labelbin: path to label binarizer.
-* images: path to input images.
+The paths to the location of the images, models and pickle files were specified at the beginning of the script itself and should be modified depending if the name or location of these files are changed.
+Simply run the following to perform the filtering of the SBB images:
+* `python classify-all.py` 
 
-The current version should run with the following command if images are properly placed in the **'sbb'** directory as suggested above:
+Once the script is done, **'output'** directories will be created with subdirectories according to the number of classes the model was trained with. The images that we want and that are considered to have meaningful content are located in the directory specified in the `output_path2` variable in the **content** subdirectory.
 
-`python classify-all.py`
-
-Once the script is done, **'output'** directories will be created with subdirectories according to the number of classes the model was trained with.
-
-Due to imbalance in training data, two models were trained to filter the images. The first model filters the following:
-* **blanks** (Blank pages)
-    * ca. 1500 training data.
-* **color_palette** (An image of a color palette)
-    *  ca. 200 training data.
-* **content** (The images the we want) 
-    * ca. 1700 training data.
-
-The second model filters the following:
-* **bar_code** (Stabi bar codes)
-* **covers** (Simple book covers, complex ones are left out)
-* **logo** (The Stabi logo)
-* **red_stamp** (Red Stabi stamp mark)
-* **content** (The images the we want)
 
 ### Note:
 A single image may also be classifed for debugging purposes by running the **'classify-single'** script. Arguments for this are as follows:
@@ -82,11 +88,13 @@ A single image may also be classifed for debugging purposes by running the **'cl
 
 Make sure the last argument **'--image'** is pointing towards a single image file.
 
+
+
 ---
 ## Output and Logging:
-The **output1** and **output2** directories will be created (if not already). Images will be grouped by their predicted class followed by their directory name (usually the PPN name). The file names themselves remain the same as well though they will instead be converted to JPEG iamges to save space.
+The **output1** and **output2** directories will be created (if not already). Images will be grouped by their predicted class followed by their directory name (usually the PPN name). The file names themselves remain the same as well though they will instead be converted to JPEG imges to save space.
 
-Log files will also be created to keep track of the progress of both scripts. Make sure to check them if errors occur or when scripts are interrupted.
+Log files will also be created to keep track of the progress of the download and classify scripts. Make sure to check them if errors occur or when scripts are interrupted.
 
 The first script will continue where it left off if unterrupted and if the respective **ppn_log.txt** has been created on the first run.
 
