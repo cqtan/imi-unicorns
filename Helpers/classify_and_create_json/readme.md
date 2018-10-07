@@ -30,7 +30,7 @@ Simply run the script with the directory, which has all the images, e.g.,
 
 Output will be: 
 * a directories for training, 
-* a directory for validation 
+* a directory for validation, 
 * as well as the labels in form of a **.pickle** file, a.k.a. the Label-Binarizer.
 
 ---
@@ -70,7 +70,7 @@ Difference between the two is that the categories_alt.json includes the **accura
 ---
 ## JSON file version 3 structure:
 
-These are currently the JSON files with postfix '_alt'. They additionally add to the class occurrance also the predicted class' accuracy as well as the amount of occurrence (count). Please refer to the example JSON files in the "JSONs" directory.
+These are currently the JSON files with postfix '_alt'. They additionally add to the class the predicted class' accuracy as well as the amount of occurrence (count). Please refer to the example JSON files in the "JSONs" directory.
 
 The file itself has 3 sections:
 * category_data
