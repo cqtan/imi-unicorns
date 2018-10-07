@@ -1,5 +1,5 @@
 # CNN algorithms for filtering out unwanted Stabi images
-Created specifically to group Stabi images together that have meaningful content. This way less data is needed to be saved in the databank and clustering may be performed only on images with actual content. Furthermore, the TIFF images are converted to JPEG. Instead of processing data amounting close to 1 terabyte, only around 80 GB are considered through the following steps.
+Created specifically to group Stabi images together that have meaningful content. This way less data is needed to be saved in the databank and clustering may be performed only on images with actual content. Furthermore, the TIFF images are converted to JPEG. Instead of processing data amounting close to 1 terabyte, only around 80 GB are considered instead with the help of the following steps.
 
 ---
 ## Dependencies:
