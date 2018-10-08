@@ -41,6 +41,8 @@ dataset2:
 * **red_stamp** (Red Stabi stamp mark)
 * **content** (The images that we want)
 
+This can be extended, of course, to filter out other categories. Simply add a new sub-directory with the category as the name in either of the dataset directories and add images of the chosen category.
+
 With this, 2 different models with their associated class labels (pickle file created by the LabelBinarizer) were created by running the `train_filter.py` script twice.
 
 * `python train_filter.py -d train_images1 -m filter1.model -l label1.pickle -p plot1.png`
