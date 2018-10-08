@@ -26,7 +26,7 @@ This should download the images to the **sbb/saved_images** directory. Since thi
 ---
 ## Creating the model for filtering:
 
-After downloading the SBB images, filtering out the images that were considered as unimportant was the second step. For this, certain images were **manually hand-picked** from the SBB images (some of which are located in the **handpicked_images.zip** file) and were grouped together according to their category. At the time of this project there was an imbalance in the number of images of certain categories in which case the filtering process would be biased. Furthermore, it was also assumed that certain categories were hard for the model to properly distinguish from other categories. Therefore, 2 separate datasets were created for training:
+After downloading the SBB images, filtering out the images that were considered as unimportant was the second step. For this, certain images were **manually hand-picked** from the SBB images and were grouped together according to their category. At the time of this project there was an imbalance in the number of images of certain categories in which case the filtering process would be biased. Furthermore, it was also assumed that certain categories were hard for the model to properly distinguish from other categories. Therefore, 2 separate datasets were created for training:
 
 dataset1:
 
