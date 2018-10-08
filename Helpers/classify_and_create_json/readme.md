@@ -50,7 +50,7 @@ Output files are:
 ---
 ## Predict
 
-Once the model and label-binarizer have been created, then predictions can be made with though 2 version can be used again:
+Once the model and label-binarizer have been created, then predictions can be made, however, 2 version can be used again:
 * "predict.py": Uses the weights you have trained (either with "train.py" or "train_keras.py")
     * `python predict.py -m model.h5 -l labels.pickle -d data`
 * "predict_imagenet.py": Uses the weights available in Keras, specifically for Imagenet only. (This includes the top layer)
